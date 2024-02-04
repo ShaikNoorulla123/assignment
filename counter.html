@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5-Minute Countdown Timer</title>
+    <script>
+        // When the page is fully loaded
+        window.onload = function() {
+            var timeLeft = 5 * 60; // 5 minutes in seconds
+            var display = document.getElementById('time'); // The display element
+
+            startTimer(timeLeft, display);
+        };
+
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            var interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    display.textContent = "TIME UP";
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+    </script>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    <div id="time" style="font-size:24px;"></div>
+</body>
+</html>
